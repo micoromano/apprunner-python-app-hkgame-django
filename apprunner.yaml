@@ -9,7 +9,7 @@ build:
 
 run:
   runtime-version: 3.8.16
-  command: python haxgameweb/manage.py runserver 8080
+  command: python manage.py runserver 8080
   network: 
     port: 8080
     env: MY_APP_PORT  
