@@ -6,7 +6,7 @@ build:
       - pip install django
       - pipenv boto3
 run:
-  runtime-version: 3.7.7
+  runtime-version: 3
   command: python  haxgameweb/manage.py runserver 8080
   network: 
     port: 8080
