@@ -8,7 +8,7 @@ build:
       - pip install requests
 
 run:
-  runtime-version: 3.8.16
+  runtime-version: 3.11.2
   command: python manage.py runserver 8080
   network: 
     port: 8080
