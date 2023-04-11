@@ -4,10 +4,9 @@ build:
   commands:
     build:        
       - pip install django
-      - pipenv boto3
+      - pip install boto3
 run:
-  runtime-version: 3
-  command: python  haxgameweb/manage.py runserver 8080
+  command: python haxgameweb/manage.py runserver 8080
   network: 
     port: 8080
     env: MY_APP_PORT  
