@@ -3,7 +3,7 @@ runtime: python3
 build:
   commands:
     build:        
-      - pip install django
+      - pip install django requests boto3 botocore
       - pipenv boto3
 run:
   runtime-version: 3

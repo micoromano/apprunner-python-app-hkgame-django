@@ -1,0 +1,37 @@
+{% extends "baseHtml.html" %}
+
+{% block title %}My amazing blog{% endblock %}
+{% block content %}
+<div class="nes-table-responsive">
+
+    <table class="nes-table is-bordered is-dark">
+     <thead>
+      <tr>
+        <th>id</th>
+        <th>nome</th>
+        <th>cognome</th>
+        <th>attivo</th>
+        <th>username</th>
+        <th>password</th>
+        <th>rank</th>
+      </tr>
+    </thead>
+    <tbody>
+
+
+{% for user in Items %}
+<tr>
+    <td>{{ user.Id }}</td>
+    <td>{{ user.info.nome }}</td>
+    <td>{{ user.info.cognome }}</td>
+    <td>{{ user.info.attivo }}</td>
+    <td>{{ user.info.username }}</td>
+    <td>{{ user.info.password }}</td>
+    <td>{{ user.info.rank }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock %}
+

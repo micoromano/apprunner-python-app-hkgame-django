@@ -1,0 +1,44 @@
+{% extends "baseHtml.html" %}
+{% block title %}Hi {{username}} {% endblock %}
+{% block content %}
+<!-- Balloon 'is-dark'  -->
+<section class="nes-container is-dark">
+    <section class="message-list">
+        <section class="message -left">
+          <i class="nes-bcrikko"></i>
+          <!-- Balloon -->
+          <div class="nes-balloon from-left is-dark">
+            <p>Ciao {{username}}</p>
+          </div>
+        </section>
+  
+        <section class="message -right">
+          <!-- Balloon -->
+          <div class="nes-balloon from-right is-dark">
+            <p>Sei Pronto a Questa Sfida ? </p>
+          </div>
+          <i class="nes-bcrikko"></i>
+        </section>
+      </section>
+    </section>
+    <section class="nes-container is-dark">
+
+    <section class="message-list">
+        <section class="message -right">
+          <!-- Balloon -->
+          <div class="nes-balloon from-right is-dark">
+            <p>Clicca Qui </p>
+          </div>
+          <i class="nes-bcrikko"></i>
+        </section>
+  
+        <section class="message -right">
+          
+            <button type="button" class="nes-btn is-primary">Primary</button>
+        </section>
+      </section>
+    </section>
+  </section>
+</section>
+
+  {% endblock %}

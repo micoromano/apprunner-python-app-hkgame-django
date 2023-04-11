@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from gamePortaleFE import views
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('gamePortale/', include('gamePortale.urls')),
-    path('fe/', include('gamePortaleFE.urls')),
-
-    
+    path('fe/', views.listing),
+    path('splash/', views.splash),
 
 ]
