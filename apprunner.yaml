@@ -4,8 +4,9 @@ build:
   commands:
     build:        
       - pip install django
-      - pip install boto3
+      - pip install boto3 botocore
 run:
+  runtime-version: 3.8.16
   command: python haxgameweb/manage.py runserver 8080
   network: 
     port: 8080
