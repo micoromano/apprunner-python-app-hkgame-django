@@ -21,7 +21,7 @@ RUN mkdir -p /opt/app/pip_cache
 RUN mkdir -p /opt/app/haxgameweb
 RUN mkdir -p /opt/app/gamePortale
 RUN mkdir -p /opt/app/gamePortaleFE
-COPY requirements.txt start-server.sh /opt/app/
+COPY requirements.txt run.sh /opt/app/
 COPY .pip_cache /opt/app/pip_cache/
 COPY martor_demo /opt/app/haxgameweb/
 COPY martor_demo /opt/app/gamePortale/
