@@ -22,9 +22,9 @@ RUN mkdir -p /opt/app/haxgameweb
 RUN mkdir -p /opt/app/gamePortale
 RUN mkdir -p /opt/app/gamePortaleFE
 COPY requirements.txt run.sh /opt/app/
-COPY martor_demo /opt/app/haxgameweb/
-COPY martor_demo /opt/app/gamePortale/
-COPY martor_demo /opt/app/gamePortaleFE/
+COPY haxgameweb /opt/app/haxgameweb/
+COPY gamePortale /opt/app/gamePortale/
+COPY gamePortaleFE /opt/app/gamePortaleFE/
 WORKDIR /opt/app
 RUN pip install -r requirements.txt --cache-dir /opt/app/pip_cache
 RUN chown -R www-data:www-data /opt/app
