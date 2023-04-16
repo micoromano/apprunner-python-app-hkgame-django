@@ -22,6 +22,7 @@ RUN mkdir -p /opt/app/haxgameweb
 RUN mkdir -p /opt/app/gamePortale
 RUN mkdir -p /opt/app/gamePortaleFE
 COPY requirements.txt run.sh /opt/app/
+COPY . /opt/app/
 COPY haxgameweb /opt/app/haxgameweb/
 COPY gamePortale /opt/app/gamePortale/
 COPY gamePortaleFE /opt/app/gamePortaleFE/
