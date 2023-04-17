@@ -31,6 +31,6 @@ RUN pip install -r requirements.txt --cache-dir /opt/app/pip_cache
 RUN chown -R www-data:www-data /opt/app
 RUN chmod 755 /opt/app/run.sh
 # start server
-EXPOSE 8020
+EXPOSE 80
 STOPSIGNAL SIGTERM
 CMD ["/opt/app/run.sh"]
