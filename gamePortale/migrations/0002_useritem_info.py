@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='useritem',
             name='Info',
-            field=models.ForeignKey(default=django.utils.timezone.now, on_delete=django.db.models.deletion.CASCADE, to='gamePortale.info'),
+            field=models.ForeignKey(1, on_delete=django.db.models.deletion.CASCADE, to='gamePortale.info'),
             preserve_default=False,
         ),
     ]
