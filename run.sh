@@ -8,3 +8,4 @@ if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ] ; 
 fi
 (python3 manage.py runserver 8020) &
 nginx -g "daemon off;"
+python manage.py migrate
