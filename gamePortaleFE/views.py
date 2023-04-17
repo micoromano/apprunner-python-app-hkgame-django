@@ -18,7 +18,7 @@ def listing(request):
 
 
     if id is None:
-            url = "https://54.93.237.49:31479/api/users"
+            url = "http://54.93.237.49:31479/api/users"
 
             headers = {
                 'HodHodApiKey': 'xyz',
@@ -30,7 +30,7 @@ def listing(request):
             responseParsed=json.loads(response.text)            
 
     else:
-            url = "https://54.93.237.49:31479/api/user?id="+id
+            url = "http://54.93.237.49:31479/api/user?id="+id
 
             headers = {
                 'HodHodApiKey': 'xyz',
