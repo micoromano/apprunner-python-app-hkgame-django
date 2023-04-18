@@ -5,3 +5,5 @@ django
 boto3
 botocore
 requests
+martor
+gunicorn

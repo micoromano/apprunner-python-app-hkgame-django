@@ -1,37 +1,39 @@
 {% extends "baseHtml.html" %}
+{% load static %}
 
-{% block title %}My amazing blog{% endblock %}
 {% block content %}
-<div class="nes-table-responsive">
 
-    <table class="nes-table is-bordered is-dark">
-     <thead>
-      <tr>
-        <th>id</th>
-        <th>nome</th>
-        <th>cognome</th>
-        <th>attivo</th>
-        <th>username</th>
-        <th>password</th>
-        <th>rank</th>
-      </tr>
-    </thead>
-    <tbody>
+
+
+<style>
+body, canvas {
+  margin: 0
+}
+canvas {
+  display: block;
+}
+</style>
+<canvas id="canvas"></canvas>
+
+<script>
+(function run() {
+    return matrix(canvas, {
+        font_size: 10
+    }).then(run);
+})();
+</script>
 
 
 {% for user in Items %}
-<tr>
-    <td>{{ user.Id }}</td>
-    <td>{{ user.info.nome }}</td>
-    <td>{{ user.info.cognome }}</td>
-    <td>{{ user.info.attivo }}</td>
-    <td>{{ user.info.username }}</td>
-    <td>{{ user.info.password }}</td>
-    <td>{{ user.info.rank }}</td>
-</tr>
+    <p>{{ user.Id }}</p>
+    <p>{{ user.info.nome }}</p>
+    <p>{{ user.info.cognome }}</p>
+    <p>{{ user.info.attivo }}</p>
+    <p>{{ user.info.username }}</p>
+    <p>{{ user.info.password }}</p>
+    <p>{{ user.info.rank }}</p>
 {% endfor %}
-</tbody>
-</table>
-</div>
+
+
 {% endblock %}
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/cmatrix"></script>
+    <title>{% block title %}My amazing site{% endblock %}</title>
+    <style>
+body, canvas {
+  margin: 0
+}
+canvas {
+  display: block;
+}
+</style>
+</head>
+
+<body>
+    <div class="nes-container is-rounded is-dark">
+
+    <div id="sidebar">
+        {% block sidebar %}
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+        </ul>
+        {% endblock %}
+    </div>
+        <canvas id="canvas"></canvas>
+
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    </div>
+    <script >
+    (function run() {
+        return matrix(canvas, {
+            font_size: 20
+        }).then(run);
+    })();
+</script>
+
+</body>
+</html>
