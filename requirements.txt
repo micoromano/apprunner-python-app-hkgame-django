@@ -5,5 +5,4 @@ django
 boto3
 botocore
 requests
-martor
-gunicorn
+psycopg2-binary

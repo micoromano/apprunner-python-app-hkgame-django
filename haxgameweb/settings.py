@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-ly$v=vstox1trpcie-b(930qd-eo%3j@fcv7nb5scbt&1s(br6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['54.93.237.49']
 
 
 # Application definition
@@ -82,7 +82,14 @@ WSGI_APPLICATION = 'haxgameweb.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {}
+       'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'Mico.Romano82!',
+        'HOST': 'database-1.cbixfgph4w3z.eu-central-1.rds.amazonaws.com',
+        'PORT': '5432',
+    }
 }
 
 
