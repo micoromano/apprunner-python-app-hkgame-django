@@ -154,72 +154,7 @@ class gamePortale_api_app_w(View):
 
         return JsonResponse(response, status=200)
     
-    def get(self, request):
 
-        
-
-        request= json.loads(request.body.decode("utf-8"))
-
-        
-        try:
-            response = table.scan()
-        except ClientError as e:
-            print(e.response['Error']['Message'])
-        else:
-            response =['']
-
-        data = json.loads(response)
-
-        
-
-        
-        for item in data.get('Items'):
-        
-            dataItem = json.loads(item)
-
-            try:
-                id = dataItem.get('Id')
-            except:
-                id = "NA"
-            try:
-                nome = dataItem.get('info.nome') 
-            except:
-                nome = ["NA"]
-            try:
-                cognome = dataItem.get('info.cognome') 
-            except:
-                cognome = "NA"
-            try:
-                attivo = dataItem.get('info.attivo') 
-            except:
-                attivo = ["NA"]
-            try:
-                username = dataItem.get('info.username') 
-            except:
-                username = "NA"
-            try:
-                password = dataItem.get('info.password') 
-            except:
-                password = ["NA"]
-            try:
-                rank = dataItem.get('info.rank') 
-            except:
-                rank = 0
-
-            UserItem.Id = id;
-            info.id = id;
-            info.nome=nome;
-            info.cognome=cognome;
-            info.attivo=attivo;
-            info.username=username;
-            info.password=password;
-            info.rank=rank;
-            UserItem.Info=info;
-        
-            response.append(UserItem)
-
-        return JsonResponse(response, status=200)
-    
 
     def put(self, request):
 
