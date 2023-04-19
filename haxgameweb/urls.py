@@ -25,5 +25,12 @@ urlpatterns = [
     path('gamePortale/', include('gamePortale.urls')),
     path('fe/', views.listing),
     path('splash/', views.splash),
+    path('t1/', views.t1),
+    path('t2/', views.t2),
+    path('t3/', views.t3),
+    path('t4/', views.t4),
+    path('t5/', views.t5),
+    path('t6/', views.t6),
+
 
 ]

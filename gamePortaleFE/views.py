@@ -53,3 +53,33 @@ def splash(request):
     data={"username":"micoromano"}
 
     return render(request, "homeSplash.html", data)
+
+def t1(request):
+    data={"username":"micoromano"}
+
+    return render(request, "t1\index.html", data)
+
+def t2(request):
+    data={"username":"micoromano"}
+
+    return render(request, "t2\index.html", data)
+
+def t3(request):
+    data={"username":"micoromano"}
+
+    return render(request, "t3\index.html", data)
+
+def t4(request):
+    data={"username":"micoromano"}
+
+    return render(request, "t4\index.html", data)
+
+def t5(request):
+    data={"username":"micoromano"}
+
+    return render(request, "t5\index.html", data)
+
+def t6(request):
+    data={"username":"micoromano"}
+
+    return render(request, "t6\index.html", data)
