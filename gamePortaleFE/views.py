@@ -18,7 +18,7 @@ def listing(request):
 
 
     if id is None:
-            url = "http://3.72.235.119:31479/api/users"
+            url = "http://a12aad629b9b5489a92792c29f62f9b1-1647943714.eu-central-1.elb.amazonaws.com:8080/api/users"
 
             headers = {
                 'HodHodApiKey': 'xyz',
@@ -30,7 +30,7 @@ def listing(request):
             responseParsed=json.loads(response.text)            
 
     else:
-            url = "http://3.72.235.119:31479/api/user?id="+id
+            url = "http://a12aad629b9b5489a92792c29f62f9b1-1647943714.eu-central-1.elb.amazonaws.com:8080/api/user?id="+id
 
             headers = {
                 'HodHodApiKey': 'xyz',
