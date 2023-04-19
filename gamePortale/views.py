@@ -19,9 +19,9 @@ table = dynamodb.Table('items')
 
 @method_decorator(csrf_exempt, name='dispatch')
 class gamePortale_api_app_w(View):
-    def post(self, request):
+    global response
 
-        
+    def post(self, request):
 
         data = json.loads(request.body.decode("utf-8"))
      
@@ -91,16 +91,12 @@ class gamePortale_api_app_w(View):
      
     def get(self, request):
 
-        
-
-
-        
         try:
             response = table.scan()
         except ClientError as e:
             print(e.response['Error']['Message'])
         else:
-            response =['']
+            response = ['']
 
         data = json.loads(response)
 
