@@ -93,7 +93,6 @@ class gamePortale_api_app_w(View):
 
         
 
-        request= json.loads(request.body.decode("utf-8"))
 
         
         try:
