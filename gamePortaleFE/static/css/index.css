@@ -353,6 +353,20 @@ button:hover {
   color: white;
   box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, .5);
 }
+.levelSection {
+  /*background: url(https://source.unsplash.com/TV2gg2kZD1o/1600x800);*/
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 450px;
+  text-align: center;
+  display: flex;
+  color: white;
+  box-shadow: 3px 10px 20px 5px rgba(0, 0, 0, .5);
+}
 
 .info {
   width: 45%;
@@ -448,3 +462,41 @@ button:hover {
 /*@media only screen and (max-width: 480px) {
 
 }*/
+
+terminal {
+  background-color: black;
+  background-image: radial-gradient(rgba(0, 150, 0, 0.75), black 120%);
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  padding: 2rem;
+  color: white;
+  font: 1.3rem Inconsolata, monospace;
+  text-shadow: 0 0 5px #C8C8C8;
+  width: 70%;
+    padding: 30px 0;
+    background: rgba(20, 40, 40, .8);
+    transition: .2s;
+    h2 {
+      font-weight: 300;
+    }
+}
+terminal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15) 1px, transparent 1px, transparent 2px);
+  pointer-events: none;
+}
+
+::selection {
+  background: #0080FF;
+  text-shadow: none;
+}
+
+pre {
+  margin: 0;
+}

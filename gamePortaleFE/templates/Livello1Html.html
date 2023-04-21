@@ -7,6 +7,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.35.3/js/jquery.terminal.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.35.3/css/jquery.terminal.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'xterm//css/xterm.css' %}" />
+    <script src="{% static 'xterm/lib/xterm.js' %}"></script>
+    <script src="{% static 'xterm/lib/xterm-addon-webgl.js' %}"></script>
+
     <script src="{% static 'cmatrix.js' %}" type="module"></script>
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
@@ -17,27 +26,36 @@
 
     <div class="divElementHeader">
 
-        <h1><a href="/" data-i18n="title">HakerGame - Level --> {{level}} </a></h1>
+        <h1><a href="/" data-i18n="title">HakerGame - Level --> {{data.level}} </a></h1>
         <p data-i18n="subtitle">The PlaceOf Hack</p>
     </div>
 </header>
 <div id="center">
     <div class="signupSection">
         <div class="info">
-            <h2>{{info.Title}}</h2>
+            <h2>{{data.info.Title}}</h2>
             <i class="icon ion-ios-ionic-outline" aria-hidden="true"></i>
-            <p>{{info.Description}}</p>
-            <figure><img class="hack-picture" src="{% static 'pwacker.png' %}" alt="#"/></figure>
+            <p>{{data.info.Description}}</p>
+            <figure><img class="hack-picture" src="{% static 'OIP.jpg' %}" alt="#"/></figure>
 
         </div>
         <form action="#" method="POST" class="signupForm" name="signupform">
-            <ul class="Bullet">{{info.DescriptionHTD}}</ul>
+            <div id="terminal"></div>
 
-            <ul class="Bullet">
-                <li>
-                    <h2><a href="{{info.url}}" target="_blank">Site to Hack</a></h2>
-                </li>
-            </ul>
+            <script>
+$('#terminal').terminal({
+    rules: function() {
+        this.echo('No rules , no black hat, use only gray hat....');
+
+    },
+     link: function() {
+        this.echo('{{data.info.url}}');
+    }
+}, {
+    greetings: "Hi Neo, we need you for pawned a site  1 Type rules for receive the rules of this level  2 Type link to receive the for this game.  3 Write the password in the Box   4 Click on Complete to close the level whit the response     5 Good Works ..."
+
+});
+      </script>
 
             <ul class="noBullet">
                 <li>
@@ -67,7 +85,11 @@ canvas {
         font_size: 10
     }).then(run);
 })();
+
+
 </script>
+
+
 
 <footer>
     <div class="divElementHeader">

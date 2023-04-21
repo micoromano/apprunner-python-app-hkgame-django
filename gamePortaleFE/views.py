@@ -50,6 +50,8 @@ def listing(request):
     return render(request, "child.html", responseParsed)
 
 def liv1(request):
+    user={"username":"micoromano"}
+
     data={
              "Id": "1",
              "level":"1",
@@ -61,7 +63,7 @@ def liv1(request):
                  "url": "http://a50242d0b3bff423eafcb357dc512d03-1269416428.eu-central-1.elb.amazonaws.com/t1/"
              }
          }
-    return render(request, "Livello1Html.html", data)
+    return render(request, "Livello1Html.html", {"data":data,"user":user})
 
 def splash(request):
     data={"username":"micoromano"}
