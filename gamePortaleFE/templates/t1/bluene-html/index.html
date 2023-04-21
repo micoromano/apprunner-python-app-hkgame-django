@@ -1,6 +1,9 @@
 <!DOCTYPE html>
+{% load static %}
+
 <html lang="en">
    <head>
+
       <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,15 +16,15 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="{% static 't1/css/bootstrap.min.css' %}">
       <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
+      <link rel="stylesheet" href="{% static 't1/css/style.css' %}">
       <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
+      <link rel="stylesheet" href="{% static 't1/css/responsive.css' %}">
       <!-- fevicon -->
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <link rel="icon" href="{% static 't1/images/fevicon.png' %}" type="image/gif" />
       <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <link rel="stylesheet" href="{% static 't1/css/jquery.mCustomScrollbar.min.js' %}">
       <!-- Tweaks for older IEs-->
       <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
@@ -33,7 +36,7 @@
    <body class="main-layout">
       <!-- loader  -->
       <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+         <div class="loader"><img src="{% static 't1/images/loading.gif' %}" alt="#" /></div>
       </div>
       <!-- end loader -->
       <!-- header -->
@@ -46,7 +49,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="index.html"><img src="images/logo.png" alt="#" /></a>
+                              <a href="index.html"><img src="{% static 't1/images/logo.png' %}" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -81,7 +84,7 @@
                <div class="col-md-7">
                   <div class="text-bg">
                      <div class="padding_lert">
-                        <i><img src="images/btn.png" alt="#"/></i>
+                        <i><img src="{% static 't1/images/btn.png' %}" alt="#"/></i>
                         <h1>A Digital Creative Agency  <br>Landing Page</h1>
                         <a href="Javascript:void(0)">Read More</a>
                      </div>
@@ -89,7 +92,7 @@
                </div>
                <div class="col-md-5 bah">
                   <div class="bann_img">
-                     <figure><img src="images/bann_img.png" alt="#"/></figure>
+                     <figure><img src="{% static 't1/images/bann_img.png' %}" alt="#"/></figure>
                   </div>
                </div>
             </div>
@@ -102,7 +105,7 @@
             <div class="row d_flex">
                <div class="col-md-5">
                   <div class="service_img">
-                     <figure><img src="images/pc.png" alt="#"/></figure>
+                     <figure><img src="{% static 't1/images/pc.png' %}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-7">
@@ -129,7 +132,7 @@
                </div>
                <div class="col-md-5">
                   <div class="solutions_img">
-                     <figure><img src="images/solusan.png" alt="#"/></figure>
+                     <figure><img src="{% static 't1/images/solusan.png' %}" alt="#"/></figure>
                   </div>
                </div>
             </div>
@@ -150,22 +153,22 @@
             <div class="row">
                <div class="col-md-6">
                   <div class="our_work">
-                     <figure><img src="images/work1.jpg" alt="#"/></figure>
+                     <figure><img src="{% static 't1/images/work1.jpg' %}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="our_work">
-                     <figure><img src="images/work2.jpg" alt="#"/></figure>
+                     <figure><img src="{% static 't1/images/work2.jpg' %}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="our_work">
-                     <figure><img src="images/work3.jpg" alt="#"/></figure>
+                     <figure><img src="{% static 't1/images/work3.jpg' %}" alt="#"/></figure>
                   </div>
                </div>
                <div class="col-md-6">
                   <div class="our_work">
-                     <figure><img src="images/work4.jpg" alt="#"/></figure>
+                     <figure><img src="{% static 't1/images/work4.jpg' %}" alt="#"/></figure>
                   </div>
                </div>
             </div>
@@ -185,8 +188,8 @@
                   <div class="col-md-7 sm_none">
                      <div class="contac_detel">
                         <ul>
-                           <li><img src="images/call.png" alt="#"/>+91 1234567890</li>
-                           <li><a href="Javascript:void(0)"> <img src="images/gmail.png" alt="#"/>demo@gmail.com</a></li>
+                           <li><img src="{% static 't1/images/call.png' %}" alt="#"/>+91 1234567890</li>
+                           <li><a href="Javascript:void(0)"> <img src={% static 't1/images/gmail.png" alt="#"/>demo@gmail.com</a></li>
                         </ul>
                      </div>
                   </div>
@@ -198,8 +201,8 @@
                   <div class="col-md-7 sm_show">
                      <div class="contac_detel">
                         <ul>
-                           <li><img src="images/call.png" alt="#"/>+91 1234567890</li>
-                           <li><a href="Javascript:void(0)"> <img src="images/gmail.png" alt="#"/>demo@gmail.com</a></li>
+                           <li><img src="{% static 't1/images/call.png' %}" alt="#"/>+91 1234567890</li>
+                           <li><a href="Javascript:void(0)"> <img src="{% static 't1/images/gmail.png' %}" alt="#"/>demo@gmail.com</a></li>
                         </ul>
                      </div>
                   </div>
@@ -218,10 +221,10 @@
       </footer>
       <!-- end footer -->
       <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
+      <script src="{% static 't1/js/jquery.min.js' %}"></script>
+      <script src="{% static 't1/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 't1/js/jquery-3.0.0.min.js' %}"></script>
+      <script src="{% static 't1/js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+      <script src="{% static 't1/js/custom.js' %}"></script>
    </body>
 </html>

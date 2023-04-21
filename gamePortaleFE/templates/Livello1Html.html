@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <script src="https://cdn.jsdelivr.net/npm/cmatrix"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+    <script src="{% static 'cmatrix.js' %}" type="module"></script>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+
+</head>
+<body>
+<header>
+
+    <div class="divElementHeader">
+
+        <h1><a href="/" data-i18n="title">HakerGame - Level --> {{level}} </a></h1>
+        <p data-i18n="subtitle">The PlaceOf Hack</p>
+    </div>
+</header>
+<div id="center">
+    <div class="signupSection">
+        <div class="info">
+            <h2>{{info.Title}}</h2>
+            <i class="icon ion-ios-ionic-outline" aria-hidden="true"></i>
+            <p>{{info.Description}}</p>
+            <figure><img class="hack-picture" src="{% static 'pwacker.png' %}" alt="#"/></figure>
+
+        </div>
+        <form action="#" method="POST" class="signupForm" name="signupform">
+            <ul class="Bullet">{{info.DescriptionHTD}}</ul>
+
+            <ul class="Bullet">
+                <li>
+                    <h2><a href="{{info.url}}" target="_blank">Site to Hack</a></h2>
+                </li>
+            </ul>
+
+            <ul class="noBullet">
+                <li>
+                    <label for="responsePwd">Password Finded</label>
+                    <input type="text" class="inputFields" id="responsePwd" name="responsePwd" placeholder="PWD" value="" required/>
+                </li>
+                <li id="center-btn">
+                    <input type="submit" id="completelevel" name="completelevel" alt="completelevel" value="Complete Level">
+                </li>
+            </ul>
+        </form>
+    </div>
+<canvas id="canvas"></canvas>
+
+<style>
+body, canvas {
+  margin: 0
+}
+canvas {
+  display: block;
+}
+</style>
+
+<script>
+(function run() {
+    return matrix(canvas, {
+        font_size: 10
+    }).then(run);
+})();
+</script>
+
+<footer>
+    <div class="divElementHeader">
+
+        <h2><a href="/" data-i18n="title">An HackCenTu Product</a></h2>
+    </div>
+</footer>
+
+</body>
+</html>

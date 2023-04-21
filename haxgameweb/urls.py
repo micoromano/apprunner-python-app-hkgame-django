@@ -31,6 +31,8 @@ urlpatterns = [
     path('t4/', views.t4),
     path('t5/', views.t5),
     path('t6/', views.t6),
+    path('liv1/', views.liv1),
+
 
 
 ]

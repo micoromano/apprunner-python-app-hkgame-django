@@ -43,11 +43,25 @@ def listing(request):
 
     
     
-    print(responseParsed)
+    #print(responseParsed)
 
             
 
     return render(request, "child.html", responseParsed)
+
+def liv1(request):
+    data={
+             "Id": "1",
+             "level":"1",
+             "info": {
+                 "Title": "Ready to Pwning ?",
+                 "Description": "In this level you will have to intercept the password in a site login.... Thank you for choosing the Blue Pill ..",
+                 "DescriptionHTD": "access the site at the link below, find the password, enter the password in the box below and click on complete the level to send the answer, once the answer has been sent the level it will be inaccessible for the whole team.... GoodWork ..",
+                 "attivo": 'true',
+                 "url": "http://a50242d0b3bff423eafcb357dc512d03-1269416428.eu-central-1.elb.amazonaws.com/t1/"
+             }
+         }
+    return render(request, "Livello1Html.html", data)
 
 def splash(request):
     data={"username":"micoromano"}
@@ -57,29 +71,29 @@ def splash(request):
 def t1(request):
     data={"username":"micoromano"}
 
-    return render(request, "t1\index.html", data)
+    return render(request, "t1/bluene-html/index.html", data)
 
 def t2(request):
     data={"username":"micoromano"}
 
-    return render(request, "t2\index.html", data)
+    return render(request, "t2/bootstrap-restaurant-template/index.html", data)
 
 def t3(request):
     data={"username":"micoromano"}
 
-    return render(request, "t3\index.html", data)
+    return render(request, "t3/digitf-html/index.html", data)
 
 def t4(request):
     data={"username":"micoromano"}
 
-    return render(request, "t4\index.html", data)
+    return render(request, "t4/html/index.html", data)
 
 def t5(request):
     data={"username":"micoromano"}
 
-    return render(request, "t5\index.html", data)
+    return render(request, "t5/2121_wave_cafe/index.html", data)
 
 def t6(request):
     data={"username":"micoromano"}
 
-    return render(request, "t6\index.html", data)
+    return render(request, "t6/templatemo_568_digimedia/homepage_1.html", data)

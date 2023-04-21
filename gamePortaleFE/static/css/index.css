@@ -402,6 +402,20 @@ button:hover {
   padding: 0;
 }
 
+.Bullet {
+  list-style-type: disclosure-closed;
+}
+
+.hack-picture {
+  border: 0px solid white;
+  border-radius: 10px 10px 0px 0px;
+  box-sizing: border-box;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+
 #join-btn {
   border: 1px solid rgba(10, 180, 180, 1);
   background: rgba(20, 20, 20, .6);
@@ -417,7 +431,20 @@ button:hover {
   }
 }
 
-
+#completelevel {
+  border: 1px solid rgba(10, 180, 180, 1);
+  background: rgba(20, 20, 20, .6);
+  font-size: 18px;
+  color: white;
+  margin-top: 20px;
+  padding: 10px 50px;
+  cursor: pointer;
+  transition: .4s;
+  &:hover {
+    background: rgba(20, 20, 20, .8);
+    padding: 10px 80px;
+  }
+}
 /*@media only screen and (max-width: 480px) {
 
 }*/
