@@ -31,7 +31,7 @@ DEBUG = True
 
 
 
-ALLOWED_HOSTS = [os.environ['ALLOWED_HOSTS']]
+ALLOWED_HOSTS = [''+os.environ['ALLOWED_HOSTS']+'']
 
 
 # Application definition
