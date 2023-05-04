@@ -6,3 +6,6 @@ boto3
 botocore
 requests
 psycopg2-binary
+djangorestframework
+dynamodb_json
+django-ninja

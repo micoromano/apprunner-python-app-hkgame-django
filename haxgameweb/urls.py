@@ -16,22 +16,26 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from gamePortaleFE import views
-
+from gamePortaleFE import views as gamePortaleFEw
+from gamePortale import views as gamePortalewBE
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('gamePortale/', include('gamePortale.urls')),
-    path('fe/', views.listing),
-    path('splash/', views.splash),
-    path('t1/', views.t1),
-    path('t2/', views.t2),
-    path('t3/', views.t3),
-    path('t4/', views.t4),
-    path('t5/', views.t5),
-    path('t6/', views.t6),
-    path('liv1/', views.liv1),
+    path("api/", include("gamePortale.api.urls")),
+    path('fe/', gamePortaleFEw.listing),
+    path('splash/', gamePortaleFEw.splash),
+    path('t1/', gamePortaleFEw.t1),
+    path('t2/', gamePortaleFEw.t2),
+    path('t3/', gamePortaleFEw.t3),
+    path('t4/', gamePortaleFEw.t4),
+    path('t5/', gamePortaleFEw.t5),
+    path('t6/', gamePortaleFEw.t6),
+    path('liv1/', gamePortaleFEw.liv1),
+    path('login/', gamePortaleFEw.logincheck),
+    path('loginFormliv1', gamePortaleFEw.loginFormliv1),
+
+
 
 
 

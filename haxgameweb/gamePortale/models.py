@@ -16,3 +16,7 @@ class UserItem(models.Model):
     Info = models.ForeignKey(info,on_delete=models.CASCADE)
 
 
+class Credentials(models.Model):
+    id = models.CharField(max_length=200,primary_key=True)
+    groupName = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)

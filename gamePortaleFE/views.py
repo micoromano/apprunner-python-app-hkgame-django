@@ -3,6 +3,7 @@ from django.template import Context, Template
 from django.shortcuts import render
 from django.http import JsonResponse
 import json
+import random
 
 import requests
 
@@ -65,6 +66,36 @@ def liv1(request):
          }
     return render(request, "Livello1Html.html", {"data":data,"user":user})
 
+
+def logincheck(request):
+
+    response = requests.get('http://localhost:8080/api/apie/getUser/'+request.GET.get('username')+'/'+request.GET.get('password'))
+    print(response.text=='"true"')
+    if response.text.__eq__('"true"'):
+        responseUser = requests.get('http://localhost:8080/api/apie/getUserD/'+request.GET.get('username'))
+        print(responseUser.text)
+        responseUserParsed = json.loads(responseUser.text)
+        responsequestions = requests.get('http://localhost:8080/api/apie/getUserData/'+responseUserParsed['id']+'/tpl')
+        print(responsequestions.text)
+        if responsequestions.text.__eq__('"null"'):
+            idTplsave = random.randint(1, 6)
+            idTpl = str(idTplsave)
+            url = 'http://localhost:8080/api/apie/setUserData'
+            myobj = {'idUser': responseUserParsed['id'],'type':'tpl','info':'{\'id\':'+idTpl+'}'}
+            requests.post(url, json = myobj)
+        else:
+            print(responsequestions.text)
+            va = json.loads(responsequestions.text)
+            vaid = json.loads(va['info'])
+            idTpl = str(vaid['id'])
+        print(idTpl)
+        data = requests.get('http://localhost:8080/api/apie/getUserQuestions/'+idTpl)
+        dataBack = json.loads(data.text)
+        print(dataBack)
+        return render(request, "Livello1Html.html", {"data":dataBack,"user":responseUserParsed})
+    else:
+        return render(request, "child.html")
+
 def splash(request):
     data={"username":"micoromano"}
 
@@ -99,3 +130,6 @@ def t6(request):
     data={"username":"micoromano"}
 
     return render(request, "t6/templatemo_568_digimedia/homepage_1.html", data)
+
+def loginFormliv1(request):
+    return render(request, 'loginLiv1Form.html')

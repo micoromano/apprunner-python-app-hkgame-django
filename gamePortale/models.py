@@ -1,9 +1,10 @@
 from django.db import models
 
+
 # Create your models here.
 
 class info(models.Model):
-    id = models.CharField(max_length=30,primary_key=True)
+    id = models.CharField(max_length=30, primary_key=True)
     nome = models.CharField(max_length=30)
     cognome = models.CharField(max_length=30)
     attivo = models.CharField(max_length=30)
@@ -11,8 +12,22 @@ class info(models.Model):
     password = models.CharField(max_length=30)
     rank = models.IntegerField
 
+
 class UserItem(models.Model):
-    id = models.CharField(max_length=30,primary_key=True)
-    Info = models.ForeignKey(info,on_delete=models.CASCADE)
+    id = models.CharField(max_length=30, primary_key=True)
+    Info = models.ForeignKey(info, on_delete=models.CASCADE)
 
 
+class Credentials(models.Model):
+    id = models.CharField(max_length=200, primary_key=True)
+    groupName = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+
+class CredentialsD(models.Model):
+    groupName = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+
+class InfoTpl(models.Model):
+    idUser = models.CharField(max_length=100)
+    type = models.CharField(max_length=100)
+    info = models.CharField(max_length=10000)

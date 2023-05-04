@@ -31,7 +31,7 @@ DEBUG = True
 
 
 
-ALLOWED_HOSTS = ['a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com']
+ALLOWED_HOSTS = ['localhost','a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com']
 
 
 # Application definition
@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'gamePortale',
     'gamePortaleFE',
 

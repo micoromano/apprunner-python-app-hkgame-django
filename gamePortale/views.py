@@ -217,3 +217,4 @@ class gamePortale_api_app_w(View):
             "message": f"User Added: {response}"
         }
         return JsonResponse(data, status=200)
+
