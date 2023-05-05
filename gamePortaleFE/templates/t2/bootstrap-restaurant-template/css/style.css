@@ -39,7 +39,10 @@
     visibility: visible;
     opacity: 1;
 }
-
+.noBullet {
+  list-style-type: none;
+  padding: 0;
+}
 
 /*** Button ***/
 .btn {

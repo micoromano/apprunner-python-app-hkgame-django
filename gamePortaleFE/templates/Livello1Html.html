@@ -39,7 +39,10 @@
             <figure><img class="hack-picture" src="{% static 'OIP.jpg' %}" alt="#"/></figure>
 
         </div>
-        <form action="#" method="POST" class="signupForm" name="signupform">
+        <form action="/completeLevel1" method="GET" class="signupForm" name="signupform">
+
+            {% if state == '"open"' %}
+
             <div id="terminal"></div>
 
             <script>
@@ -52,22 +55,65 @@ $('#terminal').terminal({
         this.echo('{{data.info.url}}');
     }
 }, {
+   {% if response.valid == 'false' %}
     greetings: "Hi Neo, we need you for pawned a site  1 Type rules for receive the rules of this level  2 Type link to receive the for this game.  3 Write the password in the Box   4 Click on Complete to close the level whit the response     5 Good Works ..."
-
+    {% endif %}
+   {% if response.valid == 'true' %}
+    greetings: "Hi Neo, well done the password {{response.password}}  it's good, send the password to achive the level"
+    {% endif %}
 });
       </script>
 
             <ul class="noBullet">
                 <li>
                     <label for="responsePwd">Password Finded</label>
-                    <input type="text" class="inputFields" id="responsePwd" name="responsePwd" placeholder="PWD" value="" required/>
+                    <input type="text" class="inputFields" id="responsePwd" name="responsePwd" placeholder="PWD" value="{{response.password}}" required/>
                 </li>
                 <li id="center-btn">
                     <input type="submit" id="completelevel" name="completelevel" alt="completelevel" value="Complete Level">
                 </li>
             </ul>
+            {% elif state == '"closed"' %}
+
+            <div id="terminal"></div>
+
+            <script>
+$('#terminal').terminal({
+    rules: function() {
+        this.echo('No rules , no black hat, use only gray hat....');
+
+    },
+     link: function() {
+        this.echo('{{data.info.url}}');
+    }
+}, {
+
+    greetings: "Hi Neo, your team have pwned the site.... old new level"
+});
+      </script>
+
+
+            {% else %}
+            <div id="terminal"></div>
+
+            <script>
+$('#terminal').terminal({
+    rules: function() {
+        this.echo('No rules , no black hat, use only gray hat....');
+
+    },
+     link: function() {
+        this.echo('{{data.info.url}}');
+    }
+}, {
+
+    greetings: "Hi Neo, no level ready.... old new level to hack"
+});
+      </script>
+            {% endif %}
         </form>
     </div>
+
 <canvas id="canvas"></canvas>
 
 <style>

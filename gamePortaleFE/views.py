@@ -4,51 +4,14 @@ from django.shortcuts import render
 from django.http import JsonResponse
 import json
 import random
-
+import datetime
 import requests
-
+from .templateEnum import templateEnumCat as templateEnum
 
 
 def listing(request):
 
-    id = request.GET.get('id')
-
-    payload = '[{\"cameraId\":"' + str(1) + '","companyId\":"' + str(1) + '",\"name\": "' + str(
-                1) + '",\"warehouse\":"' + str(1) + '",\"picture\": "' + str(
-                1) + '", \"channelNo\":"' + str(1) + '"\r\n\t}]'
-
-
-    if id is None:
-            url = "http://a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com:8081/api/users"
-
-            headers = {
-                'HodHodApiKey': 'xyz',
-                'Content-Type': 'application/json'
-            }
-            response = requests.request("GET", url, headers=headers, data=payload)
-            print(response.text)
-
-            responseParsed=json.loads(response.text)            
-
-    else:
-            url = "http://a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com:8081/api/user?id="+id
-
-            headers = {
-                'HodHodApiKey': 'xyz',
-                'Content-Type': 'application/json'
-            }
-            response = requests.request("GET", url, headers=headers, data=payload)
-            print(response.text)
-
-            responseParsed=json.loads(response.text)     
-
-    
-    
-    #print(responseParsed)
-
-            
-
-    return render(request, "child.html", responseParsed)
+    return render(request, "child.html")
 
 def liv1(request):
     user={"username":"micoromano"}
@@ -68,31 +31,46 @@ def liv1(request):
 
 
 def logincheck(request):
-
-    response = requests.get('http://localhost:8080/api/apie/getUser/'+request.GET.get('username')+'/'+request.GET.get('password'))
+    print(request.build_absolute_uri('/api/apie/getUser/'))
+    response = requests.get(request.build_absolute_uri('/api/apie/getUser/')+request.GET.get('username')+'/'+request.GET.get('password'))
     print(response.text=='"true"')
     if response.text.__eq__('"true"'):
-        responseUser = requests.get('http://localhost:8080/api/apie/getUserD/'+request.GET.get('username'))
+        responseUser = requests.get(request.build_absolute_uri('/api/apie/getUserD/')+request.GET.get('username'))
         print(responseUser.text)
         responseUserParsed = json.loads(responseUser.text)
-        responsequestions = requests.get('http://localhost:8080/api/apie/getUserData/'+responseUserParsed['id']+'/tpl')
+        responsequestions = requests.get(request.build_absolute_uri('/api/apie/getUserData/')+responseUserParsed['id']+'/tpl')
+        request.session['iduser'] = request.GET.get('username')
+
         print(responsequestions.text)
         if responsequestions.text.__eq__('"null"'):
             idTplsave = random.randint(1, 6)
             idTpl = str(idTplsave)
-            url = 'http://localhost:8080/api/apie/setUserData'
-            myobj = {'idUser': responseUserParsed['id'],'type':'tpl','info':'{\'id\':'+idTpl+'}'}
+            url = request.build_absolute_uri('/api/apie/setUserData')
+            myobj = {'idUser': responseUserParsed['id'],'type':'tpl','infos':'{\"id\":'+idTpl+'}'}
             requests.post(url, json = myobj)
         else:
             print(responsequestions.text)
             va = json.loads(responsequestions.text)
+            print(va['info'])
             vaid = json.loads(va['info'])
             idTpl = str(vaid['id'])
-        print(idTpl)
-        data = requests.get('http://localhost:8080/api/apie/getUserQuestions/'+idTpl)
+        responsestate = requests.get(request.build_absolute_uri('/api/apie/getUserData/')+responseUserParsed['id']+'/liv1closed')
+        print(responsestate.text)
+        if responsestate.text.__eq__('"null"'):
+            print(responsestate.text)
+            state='"open"'
+        else:
+            print(responsestate.text)
+            va = json.loads(responsestate.text)
+            print(va['info'])
+            vaid = json.loads(va['info'])
+            state = str(vaid['state'])
+        data = requests.get(request.build_absolute_uri('/api/apie/getUserQuestions/')+idTpl)
+        request.session['tplch'] = idTpl
         dataBack = json.loads(data.text)
         print(dataBack)
-        return render(request, "Livello1Html.html", {"data":dataBack,"user":responseUserParsed})
+        response = {'valid':'false','password':''}
+        return render(request, "Livello1Html.html", {"data":dataBack,"user":responseUserParsed,"response":response,"state":state})
     else:
         return render(request, "child.html")
 
@@ -102,34 +80,84 @@ def splash(request):
     return render(request, "homeSplash.html", data)
 
 def t1(request):
-    data={"username":"micoromano"}
-
-    return render(request, "t1/bluene-html/index.html", data)
+    urldata=request.build_absolute_uri('/api/apie/userList')
+    data={"username":"micoromano",'urldata':urldata}
+    return render(request, templateEnum['1'], data)
 
 def t2(request):
-    data={"username":"micoromano"}
-
-    return render(request, "t2/bootstrap-restaurant-template/index.html", data)
+    urldata=request.build_absolute_uri('/api/apie/userList')
+    data={"username":"micoromano",'urldata':urldata}
+    return render(request, templateEnum['2'], data)
 
 def t3(request):
-    data={"username":"micoromano"}
-
-    return render(request, "t3/digitf-html/index.html", data)
+    urldata=request.build_absolute_uri('/api/apie/userList')
+    data={"username":"micoromano",'urldata':urldata}
+    return render(request, templateEnum['3'], data)
 
 def t4(request):
-    data={"username":"micoromano"}
-
-    return render(request, "t4/html/index.html", data)
+    urldata=request.build_absolute_uri('/api/apie/userList')
+    data={"username":"micoromano",'urldata':urldata}
+    return render(request, templateEnum['4'], data)
 
 def t5(request):
-    data={"username":"micoromano"}
-
-    return render(request, "t5/2121_wave_cafe/index.html", data)
+    urldata=request.build_absolute_uri('/api/apie/userList')
+    data={"username":"micoromano",'urldata':urldata}
+    return render(request, templateEnum['5'], data)
 
 def t6(request):
-    data={"username":"micoromano"}
-
-    return render(request, "t6/templatemo_568_digimedia/homepage_1.html", data)
+    urldata=request.build_absolute_uri('/api/apie/userList')
+    data={"username":"micoromano",'urldata':urldata}
+    return render(request, templateEnum['6'], data)
 
 def loginFormliv1(request):
-    return render(request, 'loginLiv1Form.html')
+    response = requests.get(request.build_absolute_uri('/api/apie/checkLivLogin/')+request.GET.get('username')+'/'+request.GET.get('password'))
+    print(response.text=='"true"')
+    if response.text.__eq__('"true"'):
+        response = {'valid':'true','password':request.GET.get('password')}
+        data = requests.get(request.build_absolute_uri('/api/apie/getUserQuestions/')+str(1))
+        dataBack = json.loads(data.text)
+        if 'iduser' in request.session:
+            iduser = request.session['iduser']
+        responseUser = requests.get(request.build_absolute_uri('/api/apie/getUserD/')+iduser)
+        print(responseUser.text)
+        responseUserParsed = json.loads(responseUser.text)
+        url = request.build_absolute_uri('/api/apie/setUserData')
+        myobj = {'idUser':responseUserParsed['id'],'type':'liv1ok','infos':'{\"time\":\"'+str(datetime.datetime.now())+'\","response":"'+request.GET.get('password')+'\",\"level\":\"1\"}'}
+        requests.post(url, json = myobj)
+        print(dataBack)
+        responsestate = requests.get(request.build_absolute_uri('/api/apie/getUserData/')+responseUserParsed['id']+'/liv1closed')
+        print(responsestate.text)
+        if responsestate.text.__eq__('"null"'):
+            print(responsestate.text)
+            state='"open"'
+        else:
+            print(responsestate.text)
+            va = json.loads(responsestate.text)
+            print(va['info'])
+            vaid = json.loads(va['info'])
+            state = str(vaid['state'])
+        return render(request, "Livello1Html.html", {"data":dataBack,"user":responseUserParsed,"response":response,"state":state})
+    else:
+        if 'iduser' in request.session:
+            iduser = request.session['iduser']
+        if 'tplch' in request.session:
+            tplch = request.session['tplch']
+        responseUser = requests.get(request.build_absolute_uri('/api/apie/getUserD/')+iduser)
+        print(responseUser.text)
+        responseUserParsed = json.loads(responseUser.text)
+        url = request.build_absolute_uri('/api/apie/setUserData')
+        myobj = {'idUser':responseUserParsed['id'],'type':'liv1ko','infos':'{\"time\":\"'+str(datetime.datetime.now())+'\","response":"'+request.GET.get('password')+'\",\"level\":\"1\"}'}
+        requests.post(url, json = myobj)
+        return render(request, templateEnum[str(tplch)])
+
+def completeLevel1(request):
+
+    if 'iduser' in request.session:
+        iduser = request.session['iduser']
+    responseUser = requests.get(request.build_absolute_uri('/api/apie/getUserD/')+iduser)
+    print(responseUser.text)
+    responseUserParsed = json.loads(responseUser.text)
+    url = request.build_absolute_uri('/api/apie/setUserData')
+    myobj = {'idUser':responseUserParsed['id'],'type':'liv1closed','infos':'{\"time\":\"'+str(datetime.datetime.now())+'\",\"state\":\"closed\",\"level\":\"1\"}'}
+    requests.post(url, json = myobj)
+    return render(request, "Livello1Html.html", {"state":"closed","user":responseUserParsed})

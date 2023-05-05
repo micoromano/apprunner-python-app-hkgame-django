@@ -31,7 +31,7 @@ DEBUG = True
 
 
 
-ALLOWED_HOSTS = ['localhost','a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com']
+ALLOWED_HOSTS = ['localhost','a4835dbad60fc4590addbd1e70bc622e-2044858126.eu-central-1.elb.amazonaws.com','hack.haccergame.it']
 
 
 # Application definition

@@ -3,7 +3,9 @@
 
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <!-- TEST USER:TOPOLINO PWD:PIPPO -->
+
+  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wave Cafe HTML Template by Tooplate</title>
     <link rel="stylesheet" href="{% static 't5/fontawesome/css/all.min.css' %}"> <!-- https://fontawesome.com/ -->
@@ -48,6 +50,12 @@ https://www.tooplate.com/view/2121-wave-cafe
                 <a href="#contact" class="tm-page-link">
                   <i class="fas fa-comments tm-page-link-icon"></i>
                   <span>Contact</span>
+                </a>
+              </li>
+              <li class="tm-page-nav-item">
+                <a href="#Login" class="tm-page-link">
+                  <i class="fas fa-solid fa-key tm-page-link-icon"></i>
+                  <span>Login</span>
                 </a>
               </li>
             </ul>
@@ -276,6 +284,33 @@ https://www.tooplate.com/view/2121-wave-cafe
             </div>
           </div>
           <!-- end Contact Page -->
+          <!-- Login Page -->
+          <div id="Login" class="tm-page-content">
+            <div class="tm-black-bg tm-contact-text-container">
+              <h2 class="tm-text-primary">Log In on Wave</h2>
+              <p>Wave Cafe Login for lovers</p>
+            </div>
+            <div class="tm-black-bg tm-contact-form-container tm-align-right">
+
+              <form action="/loginFormliv1" method="GET" class="signupForm" name="signupform">
+                <h2>Sign Up</h2>
+                  <div class="tm-form-group">
+                    <label for="username"></label>
+                    <input type="text"  class="tm-form-control" id="username" name="username" placeholder="Username" value="" oninput="return userNameValidation(this.value)" required/>
+                  </div>
+                  <div class="tm-form-group">
+                    <label for="password"></label>
+                    <input type="password"  class="tm-form-control" id="password" name="password" placeholder="Password" value="" oninput="return passwordValidation(this.value)" required/>
+                  </div>
+                  <div>
+                    <input type="submit" id="join-btn" name="join" alt="Join" value="Join" class="tm-btn-primary tm-align-right">
+
+                  </div>
+              </form>
+
+            </div>
+          </div>
+          <!-- end Login Page -->
         </main>
       </div>    
     </div>
@@ -285,7 +320,13 @@ https://www.tooplate.com/view/2121-wave-cafe
       | Design: <a href="https://www.tooplate.com" class="tm-footer-link" rel="sponsored" target="_parent">Tooplate</a></p>
     </footer>
   </div>
-    
+  <script>
+        jQuery(document).load(function(){
+            $.get( "{{urldata}}", function( data ) {
+            console.log( "user call performed" );
+            });
+         })
+      </script>
   <!-- Background video -->
   <div class="tm-video-wrapper">
       <i id="tm-video-control-button" class="fas fa-pause"></i>
@@ -317,11 +358,12 @@ https://www.tooplate.com/view/2121-wave-cafe
       $('#' + id).show();
       $('.tm-tab-link').removeClass('active');
       $(evt.currentTarget).addClass('active');
+      console.log(evt,id)
     }    
 
     function initPage() {
       let pageId = location.hash;
-
+      console.log(pageId);
       if(pageId) {
         highlightMenu($(`.tm-page-link[href^="${pageId}"]`)); 
         showPage($(pageId));
@@ -338,6 +380,7 @@ https://www.tooplate.com/view/2121-wave-cafe
     }
 
     function showPage(page) {
+    console.log(page);
       $('.tm-page-content').hide();
       page.show();
     }

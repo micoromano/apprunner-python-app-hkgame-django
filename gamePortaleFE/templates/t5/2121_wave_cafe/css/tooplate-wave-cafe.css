@@ -16,7 +16,10 @@ body {
     overflow-x: hidden;
     background-color: #1E5050;
 }
-
+.noBullet {
+  list-style-type: none;
+  padding: 0;
+}
 ul {
     padding: 0;
     margin: 0;

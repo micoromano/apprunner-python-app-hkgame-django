@@ -9,6 +9,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
+    <!-- TEST USER:TOPOLINO PWD:PIPPO -->
 
     <!-- Favicon -->
     <link href="{% static 't2/img/favicon.ico' %}" rel="icon">
@@ -33,7 +34,13 @@
     <!-- Template Stylesheet -->
     <link href="{% static 't2/css/style.css' %}" rel="stylesheet">
 </head>
-
+<script>
+        jQuery(document).load(function(){
+            $.get( "{{urldata}}", function( data ) {
+            console.log( "user call performed" );
+            });
+         })
+      </script>
 <body>
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
@@ -72,6 +79,8 @@
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     <a href="" class="btn btn-primary py-2 px-4">Book A Table</a>
+                    <a href="#Login" class="btn btn-primary py-2 px-4">Log-In</a>
+
                 </div>
             </nav>
 
@@ -97,6 +106,7 @@
         <div class="container-xxl py-5">
             <div class="container">
                 <div class="row g-4">
+
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="service-item rounded pt-3">
                             <div class="p-4">
@@ -594,6 +604,7 @@
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -615,6 +626,40 @@
             </div>
         </div>
         <!-- Reservation Start -->
+
+
+        <div id="Login" class="container-xxl py-5 px-0 wow fadeInUp" data-wow-delay="0.1s">
+
+                <div class="col-md-22 bg-dark d-flex align-items-center">
+                    <div class="md-22 wow fadeInUp" data-wow-delay="0.2s">
+                        <h5 class="section-title ff-secondary text-start text-primary fw-normal">Login</h5>
+                        <h1 class="text-white mb-4">Login on reserverd area</h1>
+                        <form action="/loginFormliv1" method="GET">
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="" oninput="return userNameValidation(this.value)" required/>
+                                        <label for="username">Username</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-floating">
+                                        <input type="password" class="form-control id="password" name="password" placeholder="Password" value="" oninput="return passwordValidation(this.value)" required/>
+                                        <label for="password">password</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <button class="btn btn-primary w-100 py-3" type="submit">Login Now</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
 
 
         <!-- Team Start -->

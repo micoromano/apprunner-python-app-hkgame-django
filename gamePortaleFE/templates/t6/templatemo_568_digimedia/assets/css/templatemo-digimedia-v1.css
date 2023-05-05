@@ -57,6 +57,11 @@ figure, header, nav, section, article, aside, footer, figcaption {
   width: 50%;
 }
 
+.noBullet {
+  list-style-type: none;
+  padding: 0;
+}
+
 .grid-item {
   float: left;
 }

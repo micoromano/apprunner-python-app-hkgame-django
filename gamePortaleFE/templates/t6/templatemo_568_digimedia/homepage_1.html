@@ -4,6 +4,7 @@
 <html lang="en">
 
   <head>
+    <!-- TEST USER:TOPOLINO PWD:PIPPO -->
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,8 +33,14 @@ https://templatemo.com/tm-568-digimedia
 
 -->
   </head>
-
-<body>
+  <script>
+        jQuery(document).load(function(){
+            $.get( "{{urldata}}", function( data ) {
+            console.log( "user call performed" );
+            });
+         })
+      </script>
+  <body>
 
   <!-- ***** Preloader Start ***** -->
   <div id="js-preloader" class="js-preloader">
@@ -89,8 +96,10 @@ https://templatemo.com/tm-568-digimedia
               <li class="scroll-to-section"><a href="#services">Services</a></li>
               <li class="scroll-to-section"><a href="#portfolio">Projects</a></li>
               <li class="scroll-to-section"><a href="#blog">Blog</a></li>
-              <li class="scroll-to-section"><a href="#contact">Contact</a></li> 
-              <li class="scroll-to-section"><div class="border-first-button"><a href="#contact">Free Quote</a></div></li> 
+              <li class="scroll-to-section"><a href="#contact">Contact</a></li>
+              <li class="scroll-to-section"><a href="#Login">Log-In</a></li>
+              <li class="scroll-to-section"><div class="border-first-button"><a href="#contact">Free Quote</a></div></li>
+
             </ul>        
             <a class='menu-trigger'>
                 <span>Menu</span>
@@ -428,6 +437,41 @@ https://templatemo.com/tm-568-digimedia
     </div>
   </div>
 
+  <div id="Login" class="free-quote">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+          <div class="section-heading  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
+            <h6>Login On Digimedia</h6>
+            <h4>Enter your Credentials</h4>
+            <div class="line-dec"></div>
+          </div>
+        </div>
+        <div class="col-lg-8 offset-lg-2  wow fadeIn" data-wow-duration="1s" data-wow-delay="0.8s">
+          <form id="login" action="/loginFormliv1" method="GET">
+
+            <div class="row">
+              <div class="col-lg-4 col-sm-4">
+                <fieldset>
+                  <input type="text" class="website" id="username" name="username" placeholder="Username" value="" oninput="return userNameValidation(this.value)" required/>
+                </fieldset>
+              </div>
+              <div class="col-lg-4 col-sm-4">
+                <fieldset>
+                  <input type="password" class="website" id="password" name="password" placeholder="Password" value="" oninput="return passwordValidation(this.value)" required/>
+                </fieldset>
+              </div>
+              <div class="col-lg-4 col-sm-4">
+                <fieldset>
+                  <button type="submit" class="main-button">join</button>
+                </fieldset>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="portfolio" class="our-portfolio section">
     <div class="container">

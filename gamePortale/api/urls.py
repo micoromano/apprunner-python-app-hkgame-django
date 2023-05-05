@@ -34,7 +34,7 @@ def add(request, id):
 
 @api.post("/setUserData")
 def add(request,payload:info):
-    print(payload)
+    print("---->"+str(payload))
     return setUserData(request,payload.idUser,payload.type,payload.infos)
 
 @api.get("/userList")

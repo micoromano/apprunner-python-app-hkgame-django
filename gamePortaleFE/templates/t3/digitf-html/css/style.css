@@ -35,7 +35,10 @@ body {
   display: -ms-flexbox;
   display: flex;
 }
-
+.noBullet {
+  list-style-type: none;
+  padding: 0;
+}
 .heading_container h2 {
   color: #252525;
   position: relative;

@@ -33,7 +33,10 @@ urlpatterns = [
     path('t6/', gamePortaleFEw.t6),
     path('liv1/', gamePortaleFEw.liv1),
     path('login/', gamePortaleFEw.logincheck),
-    path('loginFormliv1', gamePortaleFEw.loginFormliv1),
+    path('loginFormliv1/', gamePortaleFEw.loginFormliv1),
+    path('completeLevel1/', gamePortaleFEw.completeLevel1),
+
+
 
 
 

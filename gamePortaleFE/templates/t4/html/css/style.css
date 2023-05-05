@@ -41,7 +41,10 @@
 html {
     scroll-behavior: smooth;
 }
-
+.noBullet {
+  list-style-type: none;
+  padding: 0;
+}
 body {
     color: #666666;
     font-size: 14px;
