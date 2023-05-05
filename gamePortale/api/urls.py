@@ -57,7 +57,8 @@ def findFakeUser():
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
-        #else:
+        logger.info(e)
+    #else:
         #    data_str = response['Item']
         #    _data_dict = dynamodb_json.loads(data_str)
 
@@ -80,7 +81,9 @@ def findUser(user,pwd):
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
-    #else:
+        logger.info(e)
+
+#else:
     #    data_str = response['Item']
     #    _data_dict = dynamodb_json.loads(data_str)
 
@@ -114,7 +117,8 @@ def findUserFake(pwd):
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
-    #else:
+        logger.info(e)
+#else:
     #    data_str = response['Item']
     #    _data_dict = dynamodb_json.loads(data_str)
 
@@ -150,7 +154,8 @@ def findUserD(user):
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
-    #else:
+        logger.info(e)
+#else:
     #    data_str = response['Item']
     #    _data_dict = dynamodb_json.loads(data_str)
 
@@ -175,6 +180,7 @@ def findUserD(user):
         logger.info("<------->"+str(json_data))
         _data_dict = dynamodb_json.loads(json_data)
         logger.info("<------->"+str(_data_dict))
+        logger.info(e)
 
         return  _data_dict['Item']
 
@@ -191,7 +197,8 @@ def findQuestions(id):
     except ClientError as e:
         logger.info(e.response['Error']['Message'])
         response = "{""Item"":""empty""}"
-    #else:
+        logger.info(e)
+#else:
     #    data_str = response['Item']
     #    _data_dict = dynamodb_json.loads(data_str)
 
@@ -228,7 +235,8 @@ def setUserData(request,iduser,type,infos):
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
-    #else:
+        logger.info(e)
+#else:
     #    data_str = response['Item']
     #    _data_dict = dynamodb_json.loads(data_str)
 
@@ -266,7 +274,8 @@ def getUserData(request,idUser,type):
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
-    #else:
+        logger.info(e)
+#else:
     #    data_str = response['Item']
     #    _data_dict = dynamodb_json.loads(data_str)
 
