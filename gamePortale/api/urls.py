@@ -8,7 +8,10 @@ from botocore.exceptions import ClientError
 from ninja import NinjaAPI
 from ninja import Schema
 import json
+import ast
+import logging
 
+logger = logging.getLogger(__name__)
 from gamePortale.models import InfoTpl as InfoTpl
 api = NinjaAPI()
 class info(Schema):
@@ -34,7 +37,7 @@ def add(request, id):
 
 @api.post("/setUserData")
 def add(request,payload:info):
-    print("---->"+str(payload))
+    logger.info("---->"+str(payload))
     return setUserData(request,payload.idUser,payload.type,payload.infos)
 
 @api.get("/userList")
@@ -73,7 +76,7 @@ def findUser(user,pwd):
     try:
         response = table.get_item(
             Key={'groupName': user})
-        print(response)
+        logger.info(response)
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
@@ -84,8 +87,12 @@ def findUser(user,pwd):
     # Validation and modification of incoming data goes here.
     # Then you can do whatever you need, for example:
     #    obj, created = Credentials.objects.update_or_create(_data_dict)
-
-    _data_dict = dynamodb_json.loads(response)
+    logger.info("------->"+str(response))
+    #json_data = ast.literal_eval(json.dumps(response))
+    json_data = str(response).replace("\'", "\"")
+    logger.info("<------->"+str(json_data))
+    _data_dict = dynamodb_json.loads(json_data)
+    logger.info("<------->"+str(_data_dict))
 
 
 
@@ -103,7 +110,7 @@ def findUserFake(pwd):
     try:
         response =  response = table.get_item(
             Key={'password': pwd})
-        print(response)
+        logger.info(response)
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
@@ -114,8 +121,12 @@ def findUserFake(pwd):
     # Validation and modification of incoming data goes here.
     # Then you can do whatever you need, for example:
     #    obj, created = Credentials.objects.update_or_create(_data_dict)
-
-    _data_dict = dynamodb_json.loads(response)
+    logger.info("------->"+str(response))
+    #json_data = ast.literal_eval(json.dumps(response))
+    json_data = str(response).replace("\'", "\"")
+    logger.info("<------->"+str(json_data))
+    _data_dict = dynamodb_json.loads(json_data)
+    logger.info("<------->"+str(_data_dict))
 
 
     try:
@@ -135,7 +146,7 @@ def findUserD(user):
     try:
         response = table.get_item(
             Key={'groupName': user})
-        print(response)
+        logger.info(response)
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
@@ -147,13 +158,24 @@ def findUserD(user):
     # Then you can do whatever you need, for example:
     #    obj, created = Credentials.objects.update_or_create(_data_dict)
 
-    _data_dict = dynamodb_json.loads(response)
-    print(_data_dict)
+    logger.info("------->"+str(response))
+    #json_data = ast.literal_eval(json.dumps(response))
+    json_data = str(response).replace("\'", "\"")
+    logger.info("<------->"+str(json_data))
+    _data_dict = dynamodb_json.loads(json_data)
+    logger.info("<------->"+str(_data_dict))
+
     try:
         return  _data_dict['Item']
     except Exception as e:
         response = "{""Item"":""empty""}"
-        _data_dict = dynamodb_json.loads(response)
+        logger.info("------->"+str(response))
+        #json_data = ast.literal_eval(json.dumps(response))
+        json_data = str(response).replace("\'", "\"")
+        logger.info("<------->"+str(json_data))
+        _data_dict = dynamodb_json.loads(json_data)
+        logger.info("<------->"+str(_data_dict))
+
         return  _data_dict['Item']
 
 def findQuestions(id):
@@ -164,10 +186,10 @@ def findQuestions(id):
     try:
         response =  response = table.get_item(
             Key={'id': id})
-        print(response)
+        logger.info(response)
 
     except ClientError as e:
-        print(e.response['Error']['Message'])
+        logger.info(e.response['Error']['Message'])
         response = "{""Item"":""empty""}"
     #else:
     #    data_str = response['Item']
@@ -177,14 +199,18 @@ def findQuestions(id):
     # Then you can do whatever you need, for example:
     #    obj, created = Credentials.objects.update_or_create(_data_dict)
 
-    _data_dict = dynamodb_json.loads(response)
-
+    logger.info("------->"+str(response))
+    #json_data = ast.literal_eval(json.dumps(response))
+    json_data = str(response).replace("\'", "\"")
+    logger.info("<------->"+str(json_data))
+    _data_dict = dynamodb_json.loads(json_data)
+    logger.info("<------->"+str(_data_dict))
 
     try:
         return  _data_dict['Item']
     except Exception as e:
         response = "null"
-        print(response)
+        logger.info(response)
         return response
 
 def setUserData(request,iduser,type,infos):
@@ -198,7 +224,7 @@ def setUserData(request,iduser,type,infos):
             "type": type,
             "info": infos
         })
-        print(response)
+        logger.info(response)
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
@@ -210,26 +236,33 @@ def setUserData(request,iduser,type,infos):
     # Then you can do whatever you need, for example:
     #    obj, created = Credentials.objects.update_or_create(_data_dict)
 
-    _data_dict = dynamodb_json.loads(response)
-
+    logger.info("------->"+str(response))
+    #json_data = ast.literal_eval(json.dumps(response))
+    json_data = str(response).replace("\'", "\"")
+    logger.info("<------->"+str(json_data))
+    _data_dict = dynamodb_json.loads(json_data)
+    logger.info("<------->"+str(_data_dict))
 
     try:
         return  _data_dict['Item']
     except Exception as e:
         response = "null"
-        print(response)
+        logger.info(response)
         return response
 
 def getUserData(request,idUser,type):
     region_name = 'eu-central-1'
     dynamodb = boto3.resource('dynamodb',region_name)
     table = dynamodb.Table('UserData')
-    print(idUser,type)
+    logger.info(idUser)
+    logger.info(type)
 
     try:
         response = table.get_item(
             Key={'iduser':idUser,'type':type})
-        print(request,response)
+        logger.info(request)
+        logger.info(response)
+
 
     except ClientError as e:
         response = "{""Item"":""empty""}"
@@ -241,15 +274,19 @@ def getUserData(request,idUser,type):
     # Then you can do whatever you need, for example:
     #    obj, created = Credentials.objects.update_or_create(_data_dict)
 
-    _data_dict = dynamodb_json.loads(response)
-
-
+    logger.info("------->"+str(response))
+    #json_data = ast.literal_eval(json.dumps(response))
+    json_data = str(response).replace("\"", "\\\"")
+    json_data = str(json_data).replace("\'", "\"")
+    logger.info("<------->"+str(json_data))
+    _data_dict = dynamodb_json.loads(json_data)
+    logger.info("<------->"+str(_data_dict))
 
     try:
         return  _data_dict['Item']
     except Exception as e:
         response = "null"
-        print(response)
+        logger.info(response)
         return response
 
 urlpatterns = [

@@ -7,7 +7,9 @@ import random
 import datetime
 import requests
 from .templateEnum import templateEnumCat as templateEnum
+import logging
 
+logger = logging.getLogger(__name__)
 
 def listing(request):
 
@@ -31,17 +33,17 @@ def liv1(request):
 
 
 def logincheck(request):
-    print(request.build_absolute_uri('/api/apie/getUser/'))
+    logger.info(request.build_absolute_uri('/api/apie/getUser/'))
     response = requests.get(request.build_absolute_uri('/api/apie/getUser/')+request.GET.get('username')+'/'+request.GET.get('password'))
-    print(response.text=='"true"')
+    logger.info(response.text=='"true"')
     if response.text.__eq__('"true"'):
         responseUser = requests.get(request.build_absolute_uri('/api/apie/getUserD/')+request.GET.get('username'))
-        print(responseUser.text)
+        logger.info(responseUser.text)
         responseUserParsed = json.loads(responseUser.text)
         responsequestions = requests.get(request.build_absolute_uri('/api/apie/getUserData/')+responseUserParsed['id']+'/tpl')
         request.session['iduser'] = request.GET.get('username')
 
-        print(responsequestions.text)
+        logger.info(responsequestions.text)
         if responsequestions.text.__eq__('"null"'):
             idTplsave = random.randint(1, 6)
             idTpl = str(idTplsave)
@@ -49,26 +51,26 @@ def logincheck(request):
             myobj = {'idUser': responseUserParsed['id'],'type':'tpl','infos':'{\"id\":'+idTpl+'}'}
             requests.post(url, json = myobj)
         else:
-            print(responsequestions.text)
+            logger.info(responsequestions.text)
             va = json.loads(responsequestions.text)
-            print(va['info'])
+            logger.info(va['info'])
             vaid = json.loads(va['info'])
             idTpl = str(vaid['id'])
         responsestate = requests.get(request.build_absolute_uri('/api/apie/getUserData/')+responseUserParsed['id']+'/liv1closed')
-        print(responsestate.text)
+        logger.info(responsestate.text)
         if responsestate.text.__eq__('"null"'):
-            print(responsestate.text)
+            logger.info(responsestate.text)
             state='"open"'
         else:
-            print(responsestate.text)
+            logger.info(responsestate.text)
             va = json.loads(responsestate.text)
-            print(va['info'])
+            logger.info(va['info'])
             vaid = json.loads(va['info'])
             state = str(vaid['state'])
         data = requests.get(request.build_absolute_uri('/api/apie/getUserQuestions/')+idTpl)
         request.session['tplch'] = idTpl
         dataBack = json.loads(data.text)
-        print(dataBack)
+        logger.info(dataBack)
         response = {'valid':'false','password':''}
         return render(request, "Livello1Html.html", {"data":dataBack,"user":responseUserParsed,"response":response,"state":state})
     else:
@@ -111,28 +113,28 @@ def t6(request):
 
 def loginFormliv1(request):
     response = requests.get(request.build_absolute_uri('/api/apie/checkLivLogin/')+request.GET.get('username')+'/'+request.GET.get('password'))
-    print(response.text=='"true"')
+    logger.info(response.text=='"true"')
     if response.text.__eq__('"true"'):
         response = {'valid':'true','password':request.GET.get('password')}
         data = requests.get(request.build_absolute_uri('/api/apie/getUserQuestions/')+str(1))
         dataBack = json.loads(data.text)
         iduser = request.session['iduser']
         responseUser = requests.get(request.build_absolute_uri('/api/apie/getUserD/')+iduser)
-        print(responseUser.text)
+        logger.info(responseUser.text)
         responseUserParsed = json.loads(responseUser.text)
         url = request.build_absolute_uri('/api/apie/setUserData')
         myobj = {'idUser':responseUserParsed['id'],'type':'liv1ok','infos':'{\"time\":\"'+str(datetime.datetime.now())+'\","response":"'+request.GET.get('password')+'\",\"level\":\"1\"}'}
         requests.post(url, json = myobj)
-        print(dataBack)
+        logger.info(dataBack)
         responsestate = requests.get(request.build_absolute_uri('/api/apie/getUserData/')+responseUserParsed['id']+'/liv1closed')
-        print(responsestate.text)
+        logger.info(responsestate.text)
         if responsestate.text.__eq__('"null"'):
-            print(responsestate.text)
+            logger.info(responsestate.text)
             state='"open"'
         else:
-            print(responsestate.text)
+            logger.info(responsestate.text)
             va = json.loads(responsestate.text)
-            print(va['info'])
+            logger.info(va['info'])
             vaid = json.loads(va['info'])
             state = str(vaid['state'])
         return render(request, "Livello1Html.html", {"data":dataBack,"user":responseUserParsed,"response":response,"state":state})
@@ -140,7 +142,7 @@ def loginFormliv1(request):
         iduser = request.session['iduser']
         tplch = request.session['tplch']
         responseUser = requests.get(request.build_absolute_uri('/api/apie/getUserD/')+iduser)
-        print(responseUser.text)
+        logger.info(responseUser.text)
         responseUserParsed = json.loads(responseUser.text)
         url = request.build_absolute_uri('/api/apie/setUserData')
         myobj = {'idUser':responseUserParsed['id'],'type':'liv1ko','infos':'{\"time\":\"'+str(datetime.datetime.now())+'\","response":"'+request.GET.get('password')+'\",\"level\":\"1\"}'}
@@ -152,7 +154,7 @@ def completeLevel1(request):
     if 'iduser' in request.session:
         iduser = request.session['iduser']
     responseUser = requests.get(request.build_absolute_uri('/api/apie/getUserD/')+iduser)
-    print(responseUser.text)
+    logger.info(responseUser.text)
     responseUserParsed = json.loads(responseUser.text)
     url = request.build_absolute_uri('/api/apie/setUserData')
     myobj = {'idUser':responseUserParsed['id'],'type':'liv1closed','infos':'{\"time\":\"'+str(datetime.datetime.now())+'\",\"state\":\"closed\",\"level\":\"1\"}'}
