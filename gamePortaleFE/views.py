@@ -116,8 +116,7 @@ def loginFormliv1(request):
         response = {'valid':'true','password':request.GET.get('password')}
         data = requests.get(request.build_absolute_uri('/api/apie/getUserQuestions/')+str(1))
         dataBack = json.loads(data.text)
-        if 'iduser' in request.session:
-            iduser = request.session['iduser']
+        iduser = request.session['iduser']
         responseUser = requests.get(request.build_absolute_uri('/api/apie/getUserD/')+iduser)
         print(responseUser.text)
         responseUserParsed = json.loads(responseUser.text)
@@ -138,10 +137,8 @@ def loginFormliv1(request):
             state = str(vaid['state'])
         return render(request, "Livello1Html.html", {"data":dataBack,"user":responseUserParsed,"response":response,"state":state})
     else:
-        if 'iduser' in request.session:
-            iduser = request.session['iduser']
-        if 'tplch' in request.session:
-            tplch = request.session['tplch']
+        iduser = request.session['iduser']
+        tplch = request.session['tplch']
         responseUser = requests.get(request.build_absolute_uri('/api/apie/getUserD/')+iduser)
         print(responseUser.text)
         responseUserParsed = json.loads(responseUser.text)
