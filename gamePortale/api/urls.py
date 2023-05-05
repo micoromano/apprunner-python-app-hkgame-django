@@ -71,7 +71,7 @@ def findUser(user,pwd):
     table = dynamodb.Table('credentials')
 
     try:
-        response =  response = table.get_item(
+        response = table.get_item(
             Key={'groupName': user})
         print(response)
 
