@@ -13,7 +13,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 from gamePortale.models import InfoTpl as InfoTpl
-api = NinjaAPI()
+api = NinjaAPI(docs_url=None)
 class info(Schema):
     idUser: str
     type: str
