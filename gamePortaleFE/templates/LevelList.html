@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <script src="https://cdn.jsdelivr.net/npm/cmatrix"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.35.3/js/jquery.terminal.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.35.3/css/jquery.terminal.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static 'xterm//css/xterm.css' %}" />
+    <script src="{% static 'xterm/lib/xterm.js' %}"></script>
+    <script src="{% static 'xterm/lib/xterm-addon-webgl.js' %}"></script>
+
+    <script src="{% static 'cmatrix.js' %}" type="module"></script>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+
+</head>
+<body>
+<header>
+
+    <div class="divElementHeader">
+
+        <h1><a href="/" data-i18n="title">HakerGame - Level --> {{data.level}} </a></h1>
+        <p data-i18n="subtitle">The PlaceOf Hack</p>
+    </div>
+</header>
+<div id="center">
+    <div class="signupSection">
+        <div class="info">
+            <h2>{{data.info.Title}}</h2>
+            <i class="icon ion-ios-ionic-outline" aria-hidden="true"></i>
+            <p>{{data.info.Description}}</p>
+            <figure><img class="hack-picture" src="{% static 'phpnJonjn.jpg' %}" alt="#"/></figure>
+
+        </div>
+        <table>
+        {% for item in Items %}
+            <tr>
+                {% if item.closed == 'false' %}
+                    <td style="width:50%">
+                        <p style="font-size:15px">{{item.info.Description}}</p>
+                    </td>
+                    <td style="width:50%">
+                        <a href="{{item.info.url}}" id="level"  alt="{{item.info.Description}}" value="{{item.info.Description}}">Level {{item.Level}}</a>
+                    </td>
+                {% else %}
+                    <td style="width:50%">
+                        <p style="font-size:15px">{{item.info.Description}}</p>
+                    </td>
+                    <td style="width:50%">
+                        <p class="disabled"  id="level"  alt="{{item.info.Description}}" value="{{item.info.Description}}">Level {{item.Level}} - Closed</p>
+                    </td>
+                {% endif %}
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+<canvas id="canvas"></canvas>
+
+<style>
+body, canvas {
+  margin: 0
+}
+canvas {
+  display: block;
+}
+</style>
+
+<script>
+(function run() {
+    return matrix(canvas, {
+        font_size: 10
+    }).then(run);
+})();
+
+
+</script>
+
+
+
+<footer>
+    <div class="divElementHeader">
+
+        <h2><a href="/" data-i18n="title">An HackCenTu Product</a></h2>
+    </div>
+</footer>
+
+</body>
+</html>

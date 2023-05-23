@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load gamePortaleFE_extras %}
+    <script src="https://cdn.jsdelivr.net/npm/cmatrix"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani&amp;family=Share+Tech+Mono&amp;display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.35.3/js/jquery.terminal.min.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.35.3/css/jquery.terminal.min.css" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'xterm//css/xterm.css' %}" />
+    <script src="{% static 'xterm/lib/xterm.js' %}"></script>
+    <script src="{% static 'xterm/lib/xterm-addon-webgl.js' %}"></script>
+
+    <script src="{% static 'cmatrix.js' %}" type="module"></script>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+
+</head>
+<body>
+<header>
+
+    <div class="divElementHeader">
+
+        <h1><a href="/" data-i18n="title">HakerGame - Level --> {{data.level}} </a></h1>
+        <p data-i18n="subtitle">The PlaceOf Hack</p>
+    </div>
+</header>
+<div id="center">
+    <div class="signupSection">
+        <div class="info">
+            <h2>{{data.info.Title}}</h2>
+            <i class="icon ion-ios-ionic-outline" aria-hidden="true"></i>
+            <p>{{data.info.Description}}</p>
+            <figure><img class="hack-picture" src="{% static 'injections.jpg' %}" alt="#"/></figure>
+
+        </div>
+        <form action="/completeLevel2" method="GET" class="signupForm" name="signupform">
+
+            {% if state == 'open' %}
+
+            <div id="terminal"></div>
+
+            <script>
+$('#terminal').terminal({
+    rules: function() {
+        this.echo('No rules , no black hat, use only gray hat....');
+
+    },
+     link: function() {
+        this.echo('{{data.info.url}}');
+    }
+}, {
+   {% if response.valid == 'false' %}
+    greetings: "Hi Neo, we need you to find a product info in a site  1 Type rules for receive the rules of this level  2 Type link to receive the for this game.  3 Write the info in the Box   4 Click on Complete to close the level whit the response     5 Good Works ..."
+    {% endif %}
+   {% if response.valid == 'true' %}
+    greetings: "Hi Neo, well done the product  it's good"
+    {% endif %}
+});
+      </script>
+
+
+
+            <ul class="noBullet">
+                <li>
+                    <label for="product">Product info Finded</label>
+                    <input type="textbox" class="inputFields" id="product" name="product" placeholder="product" value="" required/>
+                </li>
+                <li id="center-btn">
+                    <input type="submit" id="completelevel" name="completelevel" alt="completelevel" value="Complete Level" >
+
+                <table>
+                {% for suggest in data.info.suggestions %}
+                    <td>
+                    <a
+                            class="btn btn-info open-incident"
+                            href="{% url 'suggestionsurl' id=data.id|addstr:','|addstr:suggest.id %}"
+                            data-popup-url="{% url 'suggestionsurl'  id=data.id|addstr:','|addstr:suggest.id %}"
+                    >Aiuto di valore - {{ suggest.value }}</a>
+
+                    </td>
+
+                {% endfor %}
+
+            </table>
+
+
+            {% elif state == '"closed"' %}
+
+            <div id="terminal"></div>
+
+            <script>
+$('#terminal').terminal({
+    rules: function() {
+        this.echo('No rules , no black hat, use only gray hat....');
+
+    },
+     link: function() {
+        this.echo('{{data.info.url}}');
+    }
+}, {
+
+    greetings: "Hi Neo, your team have pwned the site.... old new level"
+});
+      </script>
+
+
+            {% else %}
+            <div id="terminal"></div>
+
+            <script>
+$('#terminal').terminal({
+    rules: function() {
+        this.echo('No rules , no black hat, use only gray hat....');
+
+    },
+     link: function() {
+        this.echo('{{data.info.url}}');
+    }
+}, {
+
+    greetings: "Hi Neo, level 2 is completed no level ready at this moment.... old new level to hack"
+});
+      </script>
+            {% endif %}
+        </form>
+    </div>
+
+<canvas id="canvas"></canvas>
+
+<style>
+body, canvas {
+  margin: 0
+}
+canvas {
+  display: block;
+}
+</style>
+
+<script>
+(function run() {
+    return matrix(canvas, {
+        font_size: 10
+    }).then(run);
+})();
+
+
+</script>
+    <script>
+  $(document).on("click", ".open-incident", function (e) {
+    e.preventDefault();
+    var $popup = $("#popup");
+    var popup_url = $(this).data("popup-url");
+    $(".modal-body", $popup).load(popup_url, function () {
+      $popup.modal("show");
+    });
+  });
+</script>
+
+    {% include "suggestModalHtml.html" %}
+<footer>
+    <div class="divElementHeader">
+
+        <h2><a href="/" data-i18n="title">An HackCenTu Product</a></h2>
+    </div>
+</footer>
+
+</body>
+</html>

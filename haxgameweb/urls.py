@@ -31,10 +31,19 @@ urlpatterns = [
     path('t4/', gamePortaleFEw.t4),
     path('t5/', gamePortaleFEw.t5),
     path('t6/', gamePortaleFEw.t6),
+    path('t6/', gamePortaleFEw.t6),
+    path('t7/', gamePortaleFEw.t7),
     path('liv1/', gamePortaleFEw.liv1),
+    path('liv2/', gamePortaleFEw.liv2),
     path('login/', gamePortaleFEw.logincheck),
     path('loginFormliv1/', gamePortaleFEw.loginFormliv1),
     path('completeLevel1/', gamePortaleFEw.completeLevel1),
+    path('completeLevel2/', gamePortaleFEw.completeLevel2),
+    path('backendwrap/', gamePortaleFEw.backendWrapper),
+    path('level/', gamePortaleFEw.levellist),
+    path("suggestionsurl/<str:id>/", gamePortaleFEw.suggest_view, name="suggestionsurl"),
+    path("wrongrespurl", gamePortaleFEw.wrongrespview, name="wrongrespurl"),
+
 
 
 
