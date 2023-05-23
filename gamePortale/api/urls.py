@@ -20,8 +20,8 @@ from botocore.config import Config
 logger = logging.getLogger(__name__)
 from gamePortale.models import InfoTpl as InfoTpl
 
-# api = NinjaAPI(docs_url=None)
-api = NinjaAPI()
+api = NinjaAPI(docs_url=None)
+#api = NinjaAPI()
 
 
 class info(Schema):
